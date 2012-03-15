@@ -326,8 +326,8 @@ function __os_parsealert(&$fp, $curr_time,
             }
 
             $evt_msg[$msg_id] = rtrim($buffer);
-            $evt_msg[$msg_id] = ereg_replace("<", "&lt;", $evt_msg[$msg_id]);
-            $evt_msg[$msg_id] = ereg_replace(">", "&gt;", $evt_msg[$msg_id]);
+            $evt_msg[$msg_id] = str_replace("<", "&lt;", $evt_msg[$msg_id]);
+            $evt_msg[$msg_id] = str_replace(">", "&gt;", $evt_msg[$msg_id]);
             $buffer = fgets($fp, 2048);
             $msg_id++;
             $evt_msg[$msg_id] = NULL;
@@ -358,12 +358,12 @@ function __os_parsealert(&$fp, $curr_time,
 
         // TODO: Why is this being done here? Can't we just use
         // htmlspecialchars() before emitting this to the browser?
-        $evt_user = ereg_replace("<", "&lt;", $evt_user);
-        $evt_user = ereg_replace(">", "&gt;", $evt_user);
+        $evt_user = str_replace("<", "&lt;", $evt_user);
+        $evt_user = str_replace(">", "&gt;", $evt_user);
         $alert->user = $evt_user;
 
-        $evt_srcip = ereg_replace("<", "&lt;", $evt_srcip);
-        $evt_srcip = ereg_replace(">", "&gt;", $evt_srcip);
+        $evt_srcip = str_replace("<", "&lt;", $evt_srcip);
+        $evt_srcip = str_replace(">", "&gt;", $evt_srcip);
         $alert->srcip = $evt_srcip;
 
         $alert->description = $evt_description;
